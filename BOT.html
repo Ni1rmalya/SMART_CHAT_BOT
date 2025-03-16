@@ -180,40 +180,48 @@
         }
 
         function getBotResponse(input) {
-            input = input.toLowerCase();
-            let responses = {
-                 "hello": "Hi there! How’s your day going? 😊",
-                "how are you": "I'm doing great! Thanks for asking. How about you?",
-                "what is your name": "I'm your friendly chatbot, here to assist you! 🤖",
-                "what can you do": "I can chat with you, answer simple questions, and make your day better! 😊",
-                "bye": "Goodbye! Hope to chat with you again soon! 👋",
-                "who created you": "I was created by an awesome developer who loves coding! 💻",
-                "what is today's date?": new Date().toDateString(),
-                "what time is it?": new Date().toLocaleTimeString(),
-                "when will IPL matches start": "The IPL schedule is announced by BCCI. Check official sources for the latest updates! 🏏",
-                "what is today's weather": "I can't fetch live weather, but you can check a weather website like weather.com ☁️",
-                "tell me a joke": "Why don’t programmers like nature? It has too many bugs! 😂",
-                "where are you from": "I'm from the world of code and algorithms! 🌍",
-                "how old are you": "I was created recently, so I’m pretty young! 😃",
-                "what is 2+2": "That's easy! It's 4. 🧮",
-                "who is the president of the USA": "Check the latest news for up-to-date information on world leaders! 🌎",
-                "suggest me a movie": "Try watching 'Inception' if you like mind-bending movies! 🎬",
-                "suggest me a book": "'Atomic Habits' by James Clear is a great read! 📚",
-                "can you sing?": "La la la... I wish I had a voice! 🎤",
-                "can you dance?": "If typing fast counts as dancing, then yes! 💃",
-                "do you like pizza?": "Of course! Who doesn’t love pizza? 🍕",
-                "what's your favorite color?": "I like green because it's the color of growth! 🌱",
-                "tell me a fun fact": "Did you know? Honey never spoils! 🍯",
-                "can you tell the news?": "I can't fetch live news, but you can check Google News for updates! 📰",
-                "how to learn JavaScript?": "Start with MDN Web Docs or W3Schools! 💻",
-                "what is AI?": "AI stands for Artificial Intelligence, the future of technology! 🤖",
-                "what is the capital of India?": "The capital of India is New Delhi! 🏛️",
-                "how do I lose weight?": "A healthy diet and regular exercise are key! 🏋️‍♂️",
-                "what is the meaning of life?": "The meaning of life is to find your purpose and enjoy the journey! 😊"
-            };
-            
-            return responses[input] || "Hmm... I'm not sure about that. Can you ask something else?";
-            }
+    input = input.toLowerCase().trim(); // Convert input to lowercase & remove extra spaces
+
+    let responses = {
+        "hello": "Hi there! How’s your day going? 😊",
+        "how are you": "I'm doing great! Thanks for asking. How about you?",
+        "what is your name": "I'm your friendly chatbot, here to assist you! 🤖",
+        "what can you do": "I can chat with you, answer simple questions, and make your day better! 😊",
+        "bye": "Goodbye! Hope to chat with you again soon! 👋",
+        "who created you": "I was created by an awesome developer who loves coding! 💻",
+        "what is today's date": new Date().toDateString(),
+        "what time is it": new Date().toLocaleTimeString(),
+        "when will ipl matches start": "The IPL schedule is announced by BCCI. Check official sources for the latest updates! 🏏",
+        "what is today's weather": "I can't fetch live weather, but you can check a weather website like weather.com ☁️",
+        "tell me a joke": "Why don’t programmers like nature? It has too many bugs! 😂",
+        "where are you from": "I'm from the world of code and algorithms! 🌍",
+        "how old are you": "I was created recently, so I’m pretty young! 😃",
+        "what is 2+2": "That's easy! It's 4. 🧮",
+        "can you sing": "La la la... I wish I had a voice! 🎤",
+        "can you dance": "If typing fast counts as dancing, then yes! 💃",
+        "what's your favorite color": "I like green because it's the color of growth! 🌱",
+        "tell me a fun fact": "Did you know? Honey never spoils! 🍯",
+        "can you tell the news": "I can't fetch live news, but you can check Google News for updates! 📰",
+        "how to learn javascript": "Start with MDN Web Docs or W3Schools! 💻",
+        "what is the full form of ai": "AI stands for Artificial Intelligence, the future of technology! 🤖",
+        "what is the capital of india": "The capital of India is New Delhi! 🏛️",
+        "what is the meaning of life": "The meaning of life is to find your purpose and enjoy the journey! 😊",
+        "how do i lose weight": "A healthy diet and regular exercise are key! 🏋️‍♂️"
+    };
+
+    // Check for exact match first
+    if (responses[input]) {
+        return responses[input];
+    }
+
+    // Check for partial matches for flexible responses
+    if (input.includes("lose weight")) return responses["how do i lose weight"];
+    if (input.includes("date")) return responses["what is today's date"];
+    if (input.includes("time")) return responses["what time is it"];
+
+    return "Hmm... I'm not sure about that. Can you ask something else?";
+}
+
 
         
 
